@@ -3,4 +3,7 @@
     <!--  images -->
     <string name="likes_content_description">Likes</string>
     <string name="poster_content_description">Poster</string>
+    <string name="movie_poster_content_description">Poster</string>
+
+
 </resources>

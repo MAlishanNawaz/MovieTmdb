@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.cleanarchitecture.creativetask.data.remote.modeldto.Movie
 import com.cleanarchitecture.creativetask.presentation.movielist.components.MovieListItem
 import java.util.*
@@ -25,9 +24,10 @@ fun MovieListScreen(
 ) {
 
     val _state=viewModel.state.value.movies
-
-    LazyColumn(modifier = Modifier.fillMaxWidth()) {
-        var movies :List<Movie> = _state?.movies ?: listOf()
+    var movies :List<Movie>
+    LazyColumn(modifier = Modifier.fillMaxWidth()
+    ) {
+         movies = _state?.movies ?: listOf()
 
         val searchedText = stateTextField.value.text
         var filteredMovies: List<Movie> = if(searchedText.isEmpty()) {
@@ -52,7 +52,7 @@ fun MovieListScreen(
         items(filteredMovies) { _filteredMovie ->
             MovieListItem(
                 movie = _filteredMovie,
-                onItemClick = { _filteredMovie.title.toString()
+                onItemClick = { _filteredMovie.title
                     navController.navigate("details/${_filteredMovie.title}") {
                         // Pop up to the start destination of the graph to
                         // avoid building up a large stack of destinations
