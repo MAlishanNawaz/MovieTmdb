@@ -91,7 +91,7 @@ private fun BoxScope.MoviePoster(posterPath: String, movieName: String) {
     val painter = rememberImagePainter(data = posterPath)
     Image(
         painter = painter,
-        contentDescription = stringResource(POSTER_BASE_URL, movieName),
+        contentDescription = stringResource(R.id.image, movieName),
         contentScale = ContentScale.FillBounds,
         modifier = Modifier.fillMaxSize()
     )
