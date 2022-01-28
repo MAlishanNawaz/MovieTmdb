@@ -43,6 +43,7 @@ data class MovieDetailResponseDto(
     @SerializedName("vote_count")
     val voteCount: Int
 )
+
 fun MovieDetailResponseDto.toMoviedetail(): MovieDetail {
 
     return MovieDetail(

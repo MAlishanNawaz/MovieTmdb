@@ -2,7 +2,9 @@ package com.cleanarchitecture.creativetask.domain.useCases.getMovie
 
 import com.cleanarchitecture.creativetask.common.utility.constant.Resource
 import com.cleanarchitecture.creativetask.data.remote.modeldto.MovieDetailResponseDto
+import com.cleanarchitecture.creativetask.data.remote.modeldto.toMoviedetail
 import com.cleanarchitecture.creativetask.data.repository.MovieRepositoryImp
+import com.cleanarchitecture.creativetask.domain.model.MovieDetail
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okio.IOException
@@ -18,7 +20,9 @@ class GetMovieUseCase @Inject constructor(
         try {
             emit(Resource.Loading<MovieDetailResponseDto>())
             val movie = repository.getMovieById(movieId)
+
             emit(Resource.Success<MovieDetailResponseDto>(movie))
+
         } catch (e: HttpException) {
             emit(Resource.Error<MovieDetailResponseDto>(e.localizedMessage ?: "An unexpected error occured"))
         } catch (e: IOException) {

@@ -13,6 +13,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
+import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -57,7 +58,8 @@ object AppModule {
     @Singleton
     fun provideApi(): ApiService {
 
-        Log.d("ApiServices", BASE_URL)
+
+       // Log.d("ApiServices", BASE_URL)
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(BASE_URL)

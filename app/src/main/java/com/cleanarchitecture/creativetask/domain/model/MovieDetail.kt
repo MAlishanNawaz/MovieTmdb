@@ -4,9 +4,8 @@ import com.cleanarchitecture.creativetask.data.remote.modeldto.Genre
 import com.cleanarchitecture.creativetask.data.remote.modeldto.ProductionCompany
 import com.cleanarchitecture.creativetask.data.remote.modeldto.ProductionCountry
 import com.cleanarchitecture.creativetask.data.remote.modeldto.SpokenLanguage
-import com.google.gson.annotations.SerializedName
 
-class MovieDetail (
+ data class MovieDetail (
 
     val adult: Boolean,
     val backdropPath: String,

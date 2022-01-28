@@ -3,7 +3,23 @@
     <!--  images -->
     <string name="likes_content_description">Likes</string>
     <string name="poster_content_description">Poster</string>
-    <string name="movie_poster_content_description">Poster</string>
+    <!-- movie detail -->
+    <string name="fetching_movie_detail">Fetching Movie Detail</string>
+    <string name="release_date">Release Date</string>
+    <string name="duration">Duration</string>
+    <string name="duration_minutes">%1$s min</string>
+    <string name="vote_average">Vote Avg</string>
+    <string name="votes">Votes</string>
+    <string name="cast">Cast</string>
+    <string name="crew">Crew</string>
+    <string name="images">Images</string>
+    <string name="see_all">See All(%1$d)</string>
+    <string name="production_companies">Production Companies</string>
+    <string name="open_website_content_description">Open Movie Website</string>
+    <string name="backdrop_content_description">Backdrop Image of %1$s</string>
+    <string name="movie_poster_content_description">Poster Image of %1$s</string>
+    <string name="production_company_logo_content_description">Logo of %1$s</string>
+    <string name="person_content_description">Photo of %1$s the %2$s</string>
 
 
 </resources>

@@ -1,46 +1,89 @@
 package com.cleanarchitecture.creativetask.presentation.movielist
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.cleanarchitecture.creativetask.common.utility.constant.Resource
-import com.cleanarchitecture.creativetask.domain.useCases.getPopularmovies.GetMoviesUseCase
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.cleanarchitecture.creativetask.data.remote.modeldto.Movie
+import com.cleanarchitecture.creativetask.domain.repository.MovieSource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 
 @HiltViewModel
 class MovieListViewModel @Inject constructor(
-    private val getMoviesUseCase: GetMoviesUseCase
-) : ViewModel() {
+    private val movieSource: MovieSource
+    ) : ViewModel() {
 
-    private val _state = mutableStateOf(MovieListState())
-    val state: State<MovieListState> = _state
+     fun getAllGames(): Flow<PagingData<Movie>> {
+        return Pager(PagingConfig(20)) { movieSource }.flow
 
-    init {
-
-        getMovies()
     }
 
-    private fun getMovies() {
-        getMoviesUseCase().onEach { result ->
-            when (result) {
-                is Resource.Success -> {
-                    _state.value=MovieListState(movies = ((result.data?: null)))
+//    private val _state = mutableStateOf(MoviesListState())
+//    val state: State<MoviesListState> = _state
+//     val _movies=MutableLiveData<List<Movie>>()
+//
+//     var endReached = mutableStateOf(false)
+//     var curPage = 1
+//     var perPageitems = 20
+//
+//
+//    init{
+//           getMovies(curPage,perPageitems)
+//
+//    }
+//
+//    fun getMovies(page: Int ,perPage: Int) {
+//
+////           val movie=_movies.value?.toMutableList() ?: mutableListOf()//
+//
+//                getMoviesUseCase(page,perPage).onEach { result ->
+//                    when (result) {
+//                        is Resource.Success -> {
+//
+//                            endReached.value= curPage*perPageitems >= result.data?.totalPages!!
+//                             _state.value=MoviesListState(movies = result.data.movies)
+//                             curPage++
+//
+////                            prevKey = if (curPage == 1) 0 else curPage - 1
+////                            nextKey = curPage++
+//                        }
+//                        is Resource.Error -> {
+//                            _state.value = MoviesListState(
+//                                error = result.message ?: "An unexpected error occured"
+//                            )
+//                        }
+//                        is Resource.Loading -> {
+//                            _state.value = MoviesListState(isLoading = true)
+//
+//
+//                        }
+//                    }
+//
+//                }.launchIn(viewModelScope)
+//            }
+//
+//    fun getSearchResults(query:String) {
+//
+//        getSearchMovies(query).onEach { result ->
+//            when (result) {
+//                is Resource.Success -> {
+////                    _state.value = MoviesListState(movies = ((result.data ?: null)))
+//
+//                }
+//                is Resource.Error -> {
+//                    _state.value = MoviesListState(
+//                        error = result.message ?: "Sorry Data Not Found"
+//                    )
+//                }
+//                is Resource.Loading -> {
+//                    _state.value = MoviesListState(isLoading = true)
+//                }
+//            }
+//
+//        }.launchIn(viewModelScope)
+//    }
 
-                }
-                is Resource.Error -> {
-                    _state.value = MovieListState(
-                        error = result.message ?: "An unexpected error occured"
-                    )
-                }
-                is Resource.Loading -> {
-                    _state.value = MovieListState(isLoading = true)
-                }
-            }
-        }.launchIn(viewModelScope)
-    }
 }
